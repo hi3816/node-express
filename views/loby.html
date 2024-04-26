@@ -6,13 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
   /* 페이지 스타일 및 배경 이미지 설정 */
+  html {
+            font-size: 16px; /* 기본 폰트 크기 */
+        }
   body {
-    background-image: url('splatoon/loby.png'); /* 배경 이미지 경로 설정 */
+    background-image: url('splatoon/dcmp/bg_warning.jpg'); /* 배경 이미지 경로 설정 */
     background-size: cover; /* 이미지를 화면 크기에 맞게 조절 */
     background-repeat: no-repeat; /* 이미지 반복 없음 */
-    background-attachment: fixed; /* 스크롤 시 배경 이미지 고정 */
+    background-color: #000000;
     text-align: center;
     font-family: Arial, sans-serif;
+    background-size: 100% auto;
   }
 
   /* 모달 스타일 */
@@ -37,6 +41,23 @@
     width: 20%;
   }
 
+  /* 버튼 스타일 */
+  .btn_click {
+    display: block;
+    width: 14.97rem;
+    height: 15.44rem;
+    position: absolute;
+    right: 18.2rem;
+    top: 21.55rem;
+    background-size: 100% auto;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+  .head1 .btn_click{
+    background-image: url('splatoon/dcmp/button.png');
+}
+
   /* 모달 닫기 버튼 스타일 */
   .close {
     color: #888;
@@ -55,38 +76,122 @@
   bottom: 0;
   animation: bounce 1s ease-in-out infinite;
 }
+.centered-image {
+    margin-left: auto; /* 화면이 작을 때는 왼쪽으로 정렬되고 */
+    margin-right: auto; /* 화면이 커질 때는 오른쪽으로 정렬됩니다. */
+}
+@media screen and (min-width: 800px) {
+    .centered-image {
+        margin-left: auto; /* 화면이 넓어질 때는 왼쪽으로 정렬되고 */
+        margin-right: auto; /* 오른쪽으로 정렬됩니다. */
+    }
+}
+ /* 슬롯머신 */
+ .slot {
+      width: 100px; /* 이미지의 가로 너비 */
+      height: 150px; /* 이미지의 세로 높이 */
+      overflow: hidden; /* 넘치는 부분 숨김 */
+      position: relative; /* 자식 요소들의 위치 지정을 위해 */
+      border: 1px solid black; /* 슬롯 테두리 스타일링 */
+      display: inline-block; /* 다른 요소와 함께 나란히 표시 */
+      margin-right: 20px; /* 슬롯 간 간격 조정 */
+    }
+
+    .slot-container {
+      position: relative; /* 슬롯 컨테이너의 위치 지정을 위해 */
+      height: 100%; /* 슬롯의 높이를 그대로 유지하기 위해 */
+      animation: slot-slide 0.1s linear infinite; /* 슬롯 슬라이드 애니메이션 적용 */
+    }
+
+    .slot img {
+      width: 100%; /* 이미지를 슬롯 크기에 맞게 조정 */
+      height: auto; /* 이미지 비율 유지 */
+      display: block; /* 이미지 간격 문제 해결을 위해 */
+    }
+
+    /* 슬롯 슬라이드 애니메이션 */
+    @keyframes slot-slide {
+      0% { top: 0; } /* 초기 위치 */
+      100% { top: -400px; } /* 이미지가 완전히 슬라이드될 때의 위치 */
+    }
 
 @keyframes bounce {
-  0% {left:45%; bottom: 500px; }
-  20%{left:45%; bottom: 200px; }
-  40%{left:45%; bottom: 300px; }
-  60%{left:45%; bottom: 200px; }
-  80%{left:45%; bottom: 250px; }
-  100%{left: 45%; bottom: 200px; }
+  0% { bottom: 300px; }
+  20%{ bottom: 0px; }
+  40%{ bottom: 100px; }
+  60%{bottom: 0px; }
+  80%{ bottom: 50px; }
+  100%{ bottom: 0px; }
 }
+
+
   </style>
   <title>뽑기</title>
 </head>
 <body>
-    <div>
-        <img src="splatoon/city.png" alt="Image" width="600" height="360">
-    </div>
-    <div id="randomButton">
-        <img src="splatoon/can.png" alt="Button Image" width="600" height="651">
+    <div id="randomButton" class="head1">
+      <a class = "btn_click"></a>
+      <!-- <img src="splatoon/dcmp/슬롯머신.png" alt="Button Image" class = "btn_click"> -->
     </div>
     <div class="ball" id="ball" style="display: none;"></div>
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <div id="content">
-                
-            </div>
-          <span class="close" id="closeModal">&times;</span>
-          <p id="modalResult"></p>
-          <!-- <img src="your-image.jpg" alt="이미지"> -->
+    <div class="modal" id="myModal" style="display: none;">
+      <div class="slot">
+        <div class="slot-container">
+          <img src="https://via.placeholder.com/100x150/ff0000" alt="Image 1">
+          <img src="https://via.placeholder.com/100x150/00ff00" alt="Image 2">
+          <img src="https://via.placeholder.com/100x150/0000ff" alt="Image 3">
         </div>
-      </div>    
+      </div>
+      <div class="slot">
+        <div class="slot-container">
+          <img src="https://via.placeholder.com/100x150/ff0000" alt="Image 1">
+          <img src="https://via.placeholder.com/100x150/00ff00" alt="Image 2">
+          <img src="https://via.placeholder.com/100x150/0000ff" alt="Image 3">
+        </div>
+      </div>
+      <div class="slot">
+        <div class="slot-container">
+          <img src="https://via.placeholder.com/100x150/ff0000" alt="Image 1">
+          <img src="https://via.placeholder.com/100x150/00ff00" alt="Image 2">
+          <img src="https://via.placeholder.com/100x150/0000ff" alt="Image 3">
+        </div>
+      </div>
+
+      <button onclick="pauseAnimation()">Pause</button>
+      <button onclick="resumeAnimation()">Resume</button>
+    </div>
+    
+   
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+          <div id="content">
+              
+          </div>
+        <span class="close" id="closeModal">&times;</span>
+        <p id="modalResult"></p>
+        <!-- <img src="your-image.jpg" alt="이미지"> -->
+      </div>
+    </div>    
 </body>
   <script>
+  //초기 페이지 사이즈 토대로 폰트사이즈 잡기
+  var pageWidth = window.innerWidth;
+  var fontSize = pageWidth / 100; // 페이지의 너비의 1/100 크기로 설정
+  document.documentElement.style.fontSize = fontSize + 'px';
+
+  // 페이지의 크기 변경을 감지하는 이벤트 리스너 추가
+  window.addEventListener('resize', function() {
+        // 현재 페이지의 너비를 가져옴
+        pageWidth = window.innerWidth;
+
+        // 폰트 크기를 페이지의 너비에 비례하여 조절
+        fontSize = pageWidth / 100; // 페이지의 너비의 1/100 크기로 설정
+        document.documentElement.style.fontSize = fontSize + 'px';
+    });
+
+
+    //랜덤 아이템 출력
    document.getElementById('randomButton').addEventListener('click', function() {
       var randomNumber = Math.random();
       var result;
@@ -121,6 +226,69 @@
         ball.style.display = 'none';
       },1000)
     });
+
+    //슬롯머신 멈추기
+    const slotImages = document.querySelectorAll('.slot-container');
+    let animationPaused = false;
+
+    function pauseAnimation() {
+      slotImages.forEach(img => {
+        img.style.animationPlayState = 'paused';
+      });
+      animationPaused = true;
+
+      const slots = document.querySelectorAll('.slot');
+
+      slots.forEach(slot => {
+        // slot div 내의 모든 이미지 요소를 선택
+        const images = slot.querySelectorAll('img');
+        
+        // 각 이미지를 하나씩 삭제
+        images.forEach(image => {
+          image.remove();
+        });
+      });
+
+       // 이미지 요소 생성
+      const img1 = document.createElement('img');
+      img1.src = "https://via.placeholder.com/100x150/ff0000";
+      img1.alt = "Image 1";
+      const img2 = document.createElement('img');
+      img2.src = "https://via.placeholder.com/100x250/ff0000";
+      img2.alt = "Image 2";
+      const img3 = document.createElement('img');
+      img3.src = "https://via.placeholder.com/100x250/ff0000";
+      img3.alt = "Image 3";
+
+      // 이미지를 추가할 slot div 선택
+      const slot1 = document.querySelector('.slot-container');
+      const slot2 = document.querySelectorAll('.slot-container')[1];
+      const slot3 = document.querySelectorAll('.slot-container')[2];
+
+      // 이미지를 slot div에 추가
+      slot1.appendChild(img1);
+      slot2.appendChild(img2);
+      slot3.appendChild(img3);
+
+      slotImages.forEach(img => {
+        // 여기서는 예시로 다른 애니메이션으로 변경하는 코드를 작성합니다.
+        // 실제로 변경할 애니메이션을 여기에 작성하면 됩니다.
+        img.style.animation = 'bounce 1s linear';
+      });
+
+      // animationPaused 변수를 false로 변경하여 애니메이션이 다시 시작되도록 함
+      animationPaused = false;
+    }
+    
+
+    function resumeAnimation()  {
+      slotImages.forEach(img => {
+        img.style.animationPlayState = 'running';
+      });
+      animationPaused = false;
+    }
+
+
 
     // 모달 창 닫기 버튼
     document.getElementById('closeModal').addEventListener('click', function() {
